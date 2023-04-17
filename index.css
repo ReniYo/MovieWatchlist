@@ -39,6 +39,7 @@ nav a {
 
 button {
     border: none;
+    cursor: pointer;
 }
 
 .search-style {
@@ -76,6 +77,10 @@ button {
     width: 25%;
     font-size: 14px;
     color: #374151;
+}
+
+.search-btn:hover {
+    background-color: aliceblue;
 }
 
 main {
@@ -159,6 +164,10 @@ main p {
     margin-right: 20px;
 }
 
+.add-remove {
+    cursor: pointer;
+}
+
 .added {
     /* display: inline;  - when activated*/
     color: green;
@@ -173,7 +182,9 @@ main p {
     font-size: 14px;
     font-weight: 700;
     color: #363636;
+    cursor: pointer;
 }
+
 
 
 

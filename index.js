@@ -3,6 +3,7 @@ const searchBtn = document.getElementById("search-btn")
 const searchList = document.getElementById("search-list")
 const myWatchlistEl = document.getElementById("my-watchlist")
 const moviesFromLocalStorage = JSON.parse(localStorage.getItem("myWatchlist"))
+let html = ``
 let myWatchlist = []
 let searchListArr = []
 let searchImdbIds = []
@@ -11,6 +12,16 @@ let searchImdbIds = []
 if (moviesFromLocalStorage) {
     myWatchlist = moviesFromLocalStorage
     renderWatchList()   
+}else{
+    html =  `
+            <div class="no-list">
+                <h3>Your watchlist is looking a little empty...</h3>
+                <div class="watchlist-add-movies-btn">
+                    <i class="fa-sharp fa-solid fa-circle-plus add-movies" data-add="add"></i>
+                    <h4 class="add-movies" data-add="add">Let’s add some movies!</h4>
+                </div>
+            </div>
+            `
 }
 
 document.addEventListener("click", function(e){
@@ -49,8 +60,8 @@ function handleSearchClick(){
 }
 
 function renderSearchList() {
+    html = ``
     if(searchImdbIds){
-        let html = ``
             for(let id of searchImdbIds){
             fetch(`https://www.omdbapi.com/?i=${id}&apikey=86d788a5&`)
             .then(res => res.json())
@@ -69,8 +80,8 @@ function renderSearchList() {
                         <div class="movie-secondary-details">
                                 <p>${data.Runtime}</p>
                                 <p>${data.Genre}</p>
-                                <i class="fa-sharp fa-solid fa-circle-plus" style="color: #111827" data-watchlist="${data.imdbID}"></i>
-                                <p data-watchlist="${data.imdbID}">Watchlist</p>
+                                <i class="fa-sharp fa-solid fa-circle-plus add-remove" style="color: #111827" data-watchlist="${data.imdbID}"></i>
+                                <p class="add-remove" data-watchlist="${data.imdbID}">Watchlist</p>
                                 <p id="added${data.imdbID}" class="added" style="display: none">Added</p>
                         </div>
                         <div>
@@ -135,7 +146,6 @@ function handleRemoveClick(id){
 }
 
 function renderWatchList() {
-    let html = ``
     if(myWatchlist.length < 1){
         html =  `
             <div class="no-list">
@@ -147,10 +157,8 @@ function renderWatchList() {
             </div>
             `
         }else{
-            
             for(let item of myWatchlist){
                 // console.log(myWatchlist)
-        
             html += `
                 <div class="movie-info">
                     <img src="${item.Poster}">
@@ -163,8 +171,8 @@ function renderWatchList() {
                         <div class="movie-secondary-details">
                                 <p>${item.Runtime}</p>
                                 <p>${item.Genre}</p>
-                                <i class="fa-solid fa-circle-minus" style="color: #111827;" data-remove="${item.imdbID}"></i>
-                                <p data-remove="${item.imdbID}">Remove</p>
+                                <i class="fa-solid fa-circle-minus add-remove" style="color: #111827;" data-remove="${item.imdbID}"></i>
+                                <p class="add-remove" data-remove="${item.imdbID}">Remove</p>
                         </div>
                         <div>
                             <p>${item.Plot}</p>
