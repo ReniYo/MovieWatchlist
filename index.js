@@ -17,8 +17,8 @@ if (moviesFromLocalStorage) {
             <div class="no-list">
                 <h3>Your watchlist is looking a little empty...</h3>
                 <div class="watchlist-add-movies-btn">
-                    <i class="fa-sharp fa-solid fa-circle-plus add-movies" data-add="add"></i>
-                    <h4 class="add-movies" data-add="add">Let’s add some movies!</h4>
+                    <i class="fa-sharp fa-solid fa-circle-plus" data-add="add"></i>
+                    <h4 data-add="add">Let’s add some movies!</h4>
                 </div>
             </div>
             `
