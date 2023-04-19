@@ -2,5 +2,12 @@ import {defineConfig} from 'vite'
 
 
 export default defineConfig({
-	plugins: []	
+	build: {
+    		rollupOptions: {
+      			input: {
+        		main: resolve(MovieWatchlist, 'index.html'),
+        		main: resolve(MovieWatchlist, 'watchlist.html'),
+      },
+    },
+  },	
 })
